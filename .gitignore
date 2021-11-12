@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Forecast Files
+Forecast.txt
+Secrets.json
