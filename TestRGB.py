@@ -3,8 +3,17 @@ import RPi.GPIO as GPIO
 from RaspberryPiPinControl import setrgbGPIO, setColor, setHumanColor
 from RedmondForecast import RedmondForecast, WEATHERCOLOR
 
+#GLOBAL VARIABLE
+pins = setrgbGPIO()
+
+#Create funcion to get color from WeatherAPI or set color.
+def get_set_color():
+    forecast = RedmondForecast()
+    todayforecast = RedmondForecast()[0]['Weather Desc.']
+    forecastcolor = WEATHERCOLOR.get(todayforecast, 'blue')
+    setHumanColor(CurrentPins = pins, humancolor = forecastcolor)
+
 if __name__ == '__main__':
-    pins = setrgbGPIO()
     setColor(CurrentPins = pins, r = 255, g = 0, b = 0)
 
     while True:
