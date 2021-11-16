@@ -8,13 +8,16 @@ from TestRGB import get_set_color, pins
 
 client = mqtt.Client()
 
+
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload.decode()))
     if msg.topic == 'Weather':
         if str(msg.payload.decode()) == 'WeatherAPI':
             get_set_color()
         else:
-            setHumanColor(CurrentPins=pins,humancolor=str(msg.payload.decode()))
+            setHumanColor(CurrentPins=pins,
+                          humancolor=str(msg.payload.decode()))
+
 
 client.on_message = on_message
 
